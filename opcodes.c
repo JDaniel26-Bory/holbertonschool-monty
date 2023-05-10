@@ -1,7 +1,10 @@
 #include "monty.h"
 
 /**
-
+ * opcodes -  check what function to pick according to input
+ * @op: opcode file to run on
+ * @stack: double pointer to head of stack
+ * @line_number: line number of file we process
 */
 
 void opcode(char *op, stack_t **stack, unsigned int line_number)
