@@ -14,13 +14,13 @@ char *arg;
 arg = strtok(NULL, "\n\t");
 if (arg == NULL || check_digit(arg))
 {
-printf(stderr, "L%u: usage: push integer\n", line_number);
+fprintf(stderr, "L%u: usage: push integer\n", line_number);
 exit(EXIT_FAILURE);
 }
-data = atoi(arg);
+d = atoi(arg);
 if (add_node(stack, d) == NULL)
 {
-printf(stderr, "Error: malloc failed\n");
+fprintf(stderr, "Error: malloc failed\n");
 exit(EXIT_FAILURE);
 }
 }

@@ -7,6 +7,8 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+extern int error;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,12 +41,18 @@ char *opcode;
 void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-int main(int argc, char **argv);
+int main(int argc, char **argv); /* principal functions */
 
-void opcode(char *op, stack_t **stack, unsigned int line_number);
+void check_opcode(char *op, stack_t **stack, unsigned int line_number);
+void free_all(stack_t *stack, FILE *fd);
 
+/* funtions monty */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+
+stack_t *add_node(stack_t **stack, int n);
+int check_digit(char *arg);
+int _isdigit(int c);
 
 #endif
 

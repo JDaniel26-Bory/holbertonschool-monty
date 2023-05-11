@@ -7,9 +7,9 @@
  * @line_number: line number of file we process
 */
 
-void opcode(char *op, stack_t **stack, unsigned int line_number)
+void check_opcode(char *op, stack_t **stack, unsigned int line_number)
 {
-int i = 0;
+int i;
 instruction_t check_op[] = {
 {"push", push},
 {"pall", pall},
@@ -20,7 +20,7 @@ instruction_t check_op[] = {
 {"nop", nop},
 {NULL, NULL}
 };
-for (; check_op[i].opcode != NULL, i++)
+for (i = 0; check_op[i].opcode != NULL, i++)
 {
 if (strcmp(op, check_op[i].opcode) == 0)
 {
@@ -28,6 +28,6 @@ check_op[i].f(stack, line_number);
 return;
 }
 }
-printf(stderr, "L%u: unknown instruction %s\n", line_number, op);
+fprintf(stderr, "L%u: unknown instruction %s\n", line_number, op);
 exit(EXIT_FAILURE);
 }
