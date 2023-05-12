@@ -1,15 +1,9 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
+#include <stdio.h>
 #include <unistd.h>
-
-extern int error;
-
-/* Structures */
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,30 +35,5 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
-/* Main Function */
-
-int main(int argc, char **argv);
-
-/* Process Functions */
-
-void check_opcode(char *op, stack_t **stack, unsigned int line_number);
-void free_all(stack_t *stack, FILE *fd);
-
-/* Monty Functions */
-
-void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_numer);
-void nop(stack_t **stack, unsigned int line_number);
-
-/* Auxiliar Functions */
-
-stack_t *add_node(stack_t **stack, int n);
-int check_digit(char *arg);
-int _isdigit(int c);
 
 #endif
