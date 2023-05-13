@@ -18,19 +18,19 @@ int main(int argc, char **argv)
     unsigned int line_number = 1;
     char *command = NULL;
 
-    /* stack_t **stack = NULL; */
+    stack_t *stack = NULL; 
     
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
 
 	if (file == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
     number_of_characters_read = getline(&line, &lenght_of_line, file);
 
@@ -47,14 +47,16 @@ int main(int argc, char **argv)
         if (command == NULL)
 
     */
-    printf("%s\n", command);
 
-    /*if (command == "push")
+    if (strcmp(command, "push") == 0)
     {
-        push(stack, line_number);
-    } */
-
-    segundo_token();
+        push(&stack, line_number);
+    }
+    
+    if (strcmp(command, "pall") == 0)
+    {
+        pall(&stack, line_number);
+    }
 
 	return (EXIT_SUCCESS);
 }
