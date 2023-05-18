@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * @file: file of the functions.
+ * @line_number: line of the number.
+ * Return: 0 on success, 1 on failure
+*/
+
 char *lines_reader(char *file, unsigned int line_number)
 {
     FILE *file_monty;

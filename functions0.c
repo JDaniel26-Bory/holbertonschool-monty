@@ -5,7 +5,7 @@
  * @stack: Double pointer to the first node of the list.
  * @line_number: Data value for the new node.
  *
- * Return: NULL on failure or address of the new element on success.
+ * Return: 0 on success, 1 on failure
  */
 void push(stack_t **stack, unsigned int line_number)
 {
