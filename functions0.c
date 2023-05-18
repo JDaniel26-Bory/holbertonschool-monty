@@ -12,25 +12,26 @@ void push(stack_t **stack, unsigned int line_number)
     char *number = NULL;
     int n;
 
-    number = strtok(NULL, " \n");
+    number = strtok(NULL, " \r\t\n");
     if (number == NULL)
     {
         dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
         exit(EXIT_FAILURE);
     }
+
     if (strcmp(number, "0") == 0)
         n = 0;
     else
     {
-            n = atoi(number);
-            if (n == 0)
-            {
-                dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
-                exit(EXIT_FAILURE);
-            }
+        n = atoi(number);
+        if (n == 0)
+        {
+            dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
+            exit(EXIT_FAILURE);
+        }
     }
-                
-    printf("Numero fuera de la pila %d\n", n);
+
+    /*printf("Numero fuera de la pila %d\n", n);*/
     
     stack_t *new_node = NULL;
 
@@ -55,7 +56,33 @@ void push(stack_t **stack, unsigned int line_number)
 
 	*stack = new_node;
 
-    printf("Numero dentro de la pila %d\n", new_node->n);
+
+    /*printf("Numero dentro de la pila %d\n", (*stack)->n);*/
 
 	return;
 }
+
+
+
+void pall(stack_t **stack, unsigned int line_number)
+{
+    (void)line_number;
+
+    stack_t *i = NULL;
+
+    if (stack == NULL)
+        return;
+    
+    if (*stack == NULL)
+        return;
+
+    for (i = *stack; i != NULL; i = i->next)
+        printf("%d\n", i->n);
+}
+
+
+void nop(stack_t **stack, unsigned int line_number)
+{
+  (void)stack, (void)line_number;
+}
+

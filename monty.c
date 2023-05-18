@@ -24,17 +24,35 @@ int main(int argc, char **argv)
 
     for(; (line = lines_reader(argv[1], line_number)) != NULL; line_number++)
     {
-        printf("%s\n", line);
+        /* printf("%s\n", line); */
         
-        command = strtok(line, " \n");
-        /*
-        
+        command = strtok(line, " \r\t\n");
         if (command == NULL)
-        */
+        {
+            line_number++;
+            continue;
+        }
+
         if (strcmp(command, "push") == 0)
         {
             push(&stack, line_number);
         }
+        else if (strcmp(command, "pall") == 0)
+        {
+            pall(&stack, line_number);
+        }
+        else
+        {
+            dprintf(STDERR_FILENO, "L%u: usage: unknown instruction %s\n", line_number, command);
+            exit(EXIT_FAILURE);
+        }
+
+        /*
+        if (strcmp(command, "nop") == 0)
+        {
+            nop(&stack, line_number);
+        }
+        */
         
         free(line);
     }

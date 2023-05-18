@@ -17,7 +17,7 @@ char *lines_reader(char *file, unsigned int line_number)
         exit(EXIT_FAILURE); 
     }
 
-    for(i = 1; i < line_number; i++)
+    for(i = 1; i <= line_number; i++)
     {
         number_of_characters_read = getline(&line, &lenght_of_line, file_monty);
         
