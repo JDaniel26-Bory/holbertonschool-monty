@@ -16,5 +16,6 @@ void (*get_opcode(char *instruction))(stack_t **stack, unsigned int line_number)
         if (strcmp(instructions[i].opcode, instruction) == 0)
             return (instructions[i].f);
     }
+
     return (NULL);
 }

@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     unsigned int line_number = 1;
     unsigned int var;
     char *command = NULL;
-
+    
     stack_t *stack = NULL;
 
     if (argc != 2)
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     while((line = lines_reader(argv[1], line_number)) != NULL)
     {
         /* printf("%s\n", line); */
-
+        
         command = strtok(line, " \r\t\n");
         if (command == NULL)
         {
@@ -44,12 +44,13 @@ int main(int argc, char **argv)
         {
             var = 2;
         }
-        else
+        else 
         {
             var = 0;
         }
 
-        switch(var)
+
+    switch(var)
     {
         case 1:
             push(&stack, line_number);
@@ -58,15 +59,12 @@ int main(int argc, char **argv)
         case 2:
             pall(&stack, line_number);
             break;
+
+        // operator doesn't match any case constant +, -, *, /
         default:
             dprintf(STDERR_FILENO, "L%u: usage: unknown instruction %s\n", line_number, command);
             exit(EXIT_FAILURE);
     }
-
-    return 0;
-}
-
-
         /*
 
         if (strcmp(command, "nop") == 0)
@@ -75,9 +73,12 @@ int main(int argc, char **argv)
         }
 
         */
+        
         free(line);
         line_number++;
+    }
 
     stack_freer(stack);
+
     return (EXIT_SUCCESS);
 }

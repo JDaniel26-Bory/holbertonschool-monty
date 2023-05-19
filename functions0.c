@@ -36,34 +36,37 @@ void push(stack_t **stack, unsigned int line_number)
     }
 
     /*printf("Numero fuera de la pila %d\n", n);*/
-
+    
     stack_t *new_node = NULL;
 
-    if (stack == NULL)
-        return;
+	if (stack == NULL)
+		return;
 
-    new_node = (stack_t *)malloc(sizeof(stack_t));
-    if (new_node == NULL)
-        return;
+	new_node = (stack_t *)malloc(sizeof(stack_t));
+	if (new_node == NULL)
+		return;
 
-    new_node->n = n;
-    new_node->prev = NULL;
+	new_node->n = n;
+	new_node->prev = NULL;
 
-    if (*stack == NULL)
-        new_node->next = NULL;
+	if (*stack == NULL)
+		new_node->next = NULL;
 
-    if (*stack)
-    {
-        new_node->next = *stack;
-        (*stack)->prev = new_node;
-    }
+	if (*stack)
+	{
+		new_node->next = *stack;
+		(*stack)->prev = new_node;
+	}
 
-    *stack = new_node;
+	*stack = new_node;
+
 
     /*printf("Numero dentro de la pila %d\n", (*stack)->n);*/
 
-    return;
+	return;
 }
+
+
 
 void pall(stack_t **stack, unsigned int line_number)
 {
@@ -73,7 +76,7 @@ void pall(stack_t **stack, unsigned int line_number)
 
     if (stack == NULL)
         return;
-
+    
     if (*stack == NULL)
         return;
 
@@ -81,7 +84,13 @@ void pall(stack_t **stack, unsigned int line_number)
         printf("%d\n", i->n);
 }
 
+
 void nop(stack_t **stack, unsigned int line_number)
 {
-    (void)stack, (void)line_number;
+  (void)stack, (void)line_number;
 }
+
+
+
+
+
