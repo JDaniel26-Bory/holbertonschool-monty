@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 
         // operator doesn't match any case constant +, -, *, /
         default:
-            dprintf(STDERR_FILENO, "L%u: usage: unknown instruction %s\n", line_number, command);
+            dprintf(STDERR_FILENO, "L%u: unknown instruction %s\n", line_number, command);
             exit(EXIT_FAILURE);
     }
         /*
