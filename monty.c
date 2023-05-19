@@ -1,5 +1,7 @@
 #include "monty.h"
 
+char *line = NULL;
+
 /**
  * main - Executes de commands of a monty file
  * @argc: Size of argv
@@ -11,8 +13,8 @@ int main(int argc, char **argv)
 {
 
     unsigned int line_number = 1;
+    unsigned int var;
     char *command = NULL;
-    char *line = NULL;
 
     stack_t *stack = NULL;
 
@@ -22,40 +24,60 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
 
-    for(; (line = lines_reader(argv[1], line_number)) != NULL; line_number++)
+    while((line = lines_reader(argv[1], line_number)) != NULL)
     {
         /* printf("%s\n", line); */
-        
+
         command = strtok(line, " \r\t\n");
         if (command == NULL)
         {
             line_number++;
+            free(line);
             continue;
         }
 
         if (strcmp(command, "push") == 0)
         {
-            push(&stack, line_number);
+            var = 1;
         }
         else if (strcmp(command, "pall") == 0)
         {
-            pall(&stack, line_number);
+            var = 2;
         }
         else
         {
-            dprintf(STDERR_FILENO, "L%u: usage: unknown instruction %s\n", line_number, command);
-            exit(EXIT_FAILURE);
+            var = 0;
         }
 
+        switch(var)
+    {
+        case 1:
+            push(&stack, line_number);
+            break;
+
+        case 2:
+            pall(&stack, line_number);
+            break;
+        default:
+            dprintf(STDERR_FILENO, "L%u: usage: unknown instruction %s\n", line_number, command);
+            exit(EXIT_FAILURE);
+    }
+
+    return 0;
+}
+
+
         /*
+
         if (strcmp(command, "nop") == 0)
         {
             nop(&stack, line_number);
         }
-        */
-        
-        free(line);
-    }
 
+        */
+        free(line);
+        line_number++;
+
+    stack_freer(stack);
     return (EXIT_SUCCESS);
 }
